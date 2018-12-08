@@ -7,7 +7,7 @@ class Sidebar extends React.Component {
       <div className="wrapper">
         <style jsx>{`
             .wrapper {
-                width: 270px;
+                height: 100%;
                 background-color: #D6D8D8;
                 padding: 60px 25px 30px;
                 box-shadow: -1px -2px 10px 0px rgb(100,100,100);

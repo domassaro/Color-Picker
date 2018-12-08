@@ -1,6 +1,6 @@
 import React from 'react';
-import navRight from '../icons/nav-right-green.svg';
-import navLeft from '../icons/nav-left-green.svg';
+import navRight from '../icons/nav-right.svg';
+import navLeft from '../icons/nav-left.svg';
 
 const Pagination = ({pageCount, currentPage, paginate}) => {
     currentPage = parseInt(currentPage);

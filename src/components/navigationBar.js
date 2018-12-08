@@ -37,7 +37,6 @@ class NavigationBar extends React.Component {
                 <input
                 className="search"
                 placeholder="Search"
-                value={this.state.searchText}
                 onChange={this.handleChange} />
         </div>
         );
