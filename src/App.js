@@ -2,36 +2,33 @@ import React, { Component } from 'react';
 import ColorList from "./components/colorList";
 import NavigationBar from "./components/navigationBar";
 import Sidebar from "./components/sidebar";
-
-const selectColor = [
-  { name: 'Red' },
-  { name: 'Orange' },
-  { name: 'Yellow' },
-  { name: 'Green' },
-  { name: 'Blue' },
-  { name: 'Purple' },
-  { name: 'Brown' },
-  { name: 'Gray' }
-];
+import Pagination from "./components/pagination";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+    };
+  }
+
+  paginate = pageNumber => {
+    this.state.loading = true;
+    this.state.page = pageNumber;
+    this.setState(this.state);
+  }; 
+
   render() {
+    let currentCount = 16;
+    let page = 1;
+    
     return (
         <div>
           <style jsx>{`
             .container {
               height: 100%;
-              display: -ms-flexbox;
               display: -webkit-box;
-              display: -moz-box;
-              display: -ms-box;
-              display: box;
-              
-              -ms-flex-direction: row;
               -webkit-box-orient: horizontal;
-              -moz-box-orient: horizontal;
-              -ms-box-orient: horizontal;
-              box-orient: horizontal;
             }
             .navigation-bar {
               text-align: center;
@@ -40,21 +37,13 @@ class App extends Component {
               min-height: 100vh;
             }
             .sidebar {
-              height: 800px;
               width: auto;
-              -ms-flex: 0 100px;
-              -webkit-box-flex:  0;
-              -moz-box-flex:  0;
-              -ms-box-flex:  0;
-              box-flex:  0;  
+              -webkit-box-flex: 0;
+              height:100vh;
             }
             .color-content {
               padding: 50px;
-              -ms-flex: 1;
               -webkit-box-flex: 1;
-              -moz-box-flex: 1;
-              -ms-box-flex: 1;
-              box-flex: 1;  
             }
 
             @media screen and (max-width: 800px) {
@@ -67,10 +56,14 @@ class App extends Component {
           <NavigationBar />
           <div className="container">
             <div className="sidebar">
-              <Sidebar selectColor={selectColor} />
+              <Sidebar />
             </div>
             <div className="color-content">
               <ColorList />
+              <Pagination 
+                pageCount={Math.ceil(currentCount / 12)}
+                currentPage={page} 
+                paginate={this.paginate} />
             </div>
           </div>
         </div>

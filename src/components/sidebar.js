@@ -10,13 +10,13 @@ class Sidebar extends React.Component {
                 height: 100%;
                 background-color: #D6D8D8;
                 padding: 60px 25px 30px;
-                box-shadow: -1px -2px 10px 0px rgb(100,100,100);
+                -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+                box-shadow: -1px -2px 10px 0px rgb(100, 100, 100);
             }
 
             .random-color-button {
                 padding: 10px;
                 border: 1px solid #363C3C;
-                color: #363C3C;
                 outline: none;
                 border-radius: 5px;
                 background: white;
@@ -41,6 +41,36 @@ class Sidebar extends React.Component {
                 color: rgb(60, 60, 60);
                 text-transform: capitalize;
             }
+            
+            .color-options {
+                padding: 10px;
+                position: relative;
+                color: #000;
+                text-decoration: none;
+            }
+            .color-options:hover {
+                color: #000;
+                cursor: pointer;
+            }
+            .color-options:before {
+                content: "";
+                position: absolute;
+                width: 60px;
+                height: 2px;
+                bottom: 0;
+                left: 10px;
+                background-color: #000;
+                visibility: hidden;
+                -webkit-transform: scaleX(0);
+                transform: scaleX(0);
+                -webkit-transition: all 0.3s ease-in-out 0s;
+                transition: all 0.3s ease-in-out 0s;
+            }
+            .color-options:hover:before {
+                visibility: visible;
+                -webkit-transform: scaleX(1);
+                transform: scaleX(1);
+            }
 
             @media screen and (max-width: 800px) {
                 .wrapper {
@@ -61,6 +91,16 @@ class Sidebar extends React.Component {
             <button className="random-color-button" onClick={this.handleRandomClick}>
                 Random Color
             </button>
+            <div>
+                <div className="color-options" onClick>Red</div>
+                <div className="color-options">Orange</div>
+                <div className="color-options">Yellow</div>
+                <div className="color-options">Green</div>
+                <div className="color-options">Blue</div>
+                <div className="color-options">Purple</div>
+                <div className="color-options">Brown</div>
+                <div className="color-options">Gray</div>
+            </div>
       </div>
     );
   }

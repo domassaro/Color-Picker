@@ -1,7 +1,20 @@
 import React from 'react';
+import Colors from "./common/colors";
+import chromaJs from "chroma-js";
 
 class ColorList extends React.Component {
+
+
   render() {
+    let colorsPresent = [];
+    for (let i = 0; i < Colors.length; i++) {
+      if (Colors[i] !== undefined) {
+        colorsPresent.push(chromaJs(Colors[i]).hex());
+      }
+    }
+
+
+
 
     return (        
       <div>
@@ -9,13 +22,22 @@ class ColorList extends React.Component {
           .color-container {
             position: relative;
             -webkit-box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
-                    box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
+            box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
             border-radius: 8px;
             overflow: hidden;
-            background-color: blue;
+            background-color: 'white';
             height: 200px;
             width: 200px;
+            margin: 30px;
+            display: inline-block;
           }
+          .color-container:hover {
+            -webkit-transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            transform: scale(1.2);
+            transition: 0.7s;
+          }
+
           .color-container .color-label {
             position: absolute;
             bottom: 0;
@@ -27,9 +49,14 @@ class ColorList extends React.Component {
             color: rgb(80,80,80);
           }
         `}</style>
-          <div className="color-container">
-            <div className="color-label">#cfff4s</div>
-          </div>
+        {colorsPresent.map((d, i) => {
+            let styles = {
+              backgroundColor: d,
+            };
+          return (<div className="color-container" style={styles}>
+          <div className="color-label">{d}</div>
+        </div>);
+          })}
       </div>
     );
   }
