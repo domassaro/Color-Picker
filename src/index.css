@@ -1,5 +1,13 @@
-body {
+html, body {
   font-family: 'Source Serif Pro', serif;
+  -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: transparent;
+  font-size: 100%;
 }

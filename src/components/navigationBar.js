@@ -1,24 +1,7 @@
 import React from 'react';
 import logo from '../icons/logo.svg';
 
-class NavigationBar extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {searchText:''};
-  }
-
-  handleChange = (event) => {
-    this.setState({
-      searchText: event.target.value,
-    })
-    this.props.colors.search(event.target.value);
-    this.handleListView();
-  }
-
-  handleListView = () => {
-    this.props.colors.selectedColor = null;
-  };
-
+class NavigationBar extends React.Component {
   render(){
     return(
       <div className="nav-wrapper">
@@ -50,7 +33,7 @@ class NavigationBar extends React.Component{
                 margin-right: 10px;
             }
         `}</style>
-            <img className="icon" onClick={this.handleListView} alt="" src={logo} />
+            <img src={logo} className="icon" onClick={this.handleListView} alt="" />
                 <input
                 className="search"
                 placeholder="Search"
