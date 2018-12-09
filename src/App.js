@@ -70,29 +70,16 @@ class App extends Component {
               flex-direction: column;
               min-height: 100vh;
             }
-            .sidebar {
-              width: auto;
-              -webkit-box-flex: 0;
-              height: 100vh;
-            }
             .color-content {
+              text-align: center;
               padding: 50px;
               -webkit-box-flex: 1;
-            }
-
-            @media screen and (max-width: 800px) {
-              .sidebar {
-                flex-direction: column;
-              }
             }
           `}</style>
 
           <NavigationBar />
           <div className="container">
-            <div className="sidebar">
-              <Sidebar 
-                handleRandomClick={(e) => this.handleRandomClick(e)} />
-            </div>
+            <Sidebar handleRandomClick={(e) => this.handleRandomClick(e)} />
             <div className="color-content">
               {!getCurrentColor() && <ColorList  
                 colorsPresent={this.state.colorsPresent}

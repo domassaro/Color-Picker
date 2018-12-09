@@ -1,4 +1,5 @@
 import React from 'react';
+import chromaJs from "chroma-js";
 
 class Sidebar extends React.Component {
     constructor(props) {
@@ -8,36 +9,27 @@ class Sidebar extends React.Component {
         };
     }
 
-  render() {
-    const colorOptions = { 
-        Red: 'Red',
-        Orange: 'Orange',
-        Yellow: 'Yellow', 
-        Green: 'Green',
-        Blue: 'Blue',
-        Purple: 'Purple', 
-        Brown: 'Brown', 
-        Gray: 'Gray'
-    };
+    getRedColor = () => {
+        chromaJs.scale(['red']).colors(12);
+    }
 
+  render() {
     return (        
       <div className="wrapper">
         <style jsx>{`
             .wrapper {
-                height: 100%;
                 background-color: #D6D8D8;
                 padding: 60px 25px 30px;
-                -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
                 box-shadow: -1px -2px 10px 0px rgb(100, 100, 100);
             }
 
             .random-color-button {
-                padding: 10px;
+                padding: 10px 25px;
+                font-weight: bold;
                 border: 1px solid #363C3C;
-                outline: none;
-                border-radius: 5px;
                 background: white;
                 font-size: 17px;
+                font-family: 'Source Serif Pro', serif;
                 margin-bottom: 30px;
                 width: 100%;
                 height: 50px;
@@ -66,7 +58,6 @@ class Sidebar extends React.Component {
                 text-decoration: none;
             }
             .color-options:hover {
-                color: #000;
                 cursor: pointer;
             }
             .color-options:before {
@@ -109,12 +100,14 @@ class Sidebar extends React.Component {
                 Random Color
             </button>
             <div>
-                {Object.keys(colorOptions).map( (color, index) => (
-                    <div className="color-options"
-                        key={index} >
-                        {color}
-                    </div>
-                ))}
+                <div className="color-options" onClick={(e) => this.getRedColor()}>Red</div>
+                <div className="color-options">Orange</div>
+                <div className="color-options">Yellow</div>
+                <div className="color-options">Green</div>
+                <div className="color-options">Blue</div>
+                <div className="color-options">Purple</div>
+                <div className="color-options">Brown</div>
+                <div className="color-options">Gray</div>
             </div>
       </div>
     );

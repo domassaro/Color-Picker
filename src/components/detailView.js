@@ -12,9 +12,15 @@ class DetailView extends React.Component {
     let shadesPresent = [];
 
     for (let i = 0; i <= 4; i++) {
-      let newColor = chromaJs(currentColor).brighten(.3).hex();
-      shadesPresent.push(newColor);
-      currentColor = newColor;
+      if (currentColor !== "#ffffff") {
+        let newColor = chromaJs(currentColor).brighten(.2).hex();
+        shadesPresent.push(newColor);
+        currentColor = newColor;
+      } else {
+        let newShade = chromaJs(currentColor).darken(.2).hex();
+        shadesPresent.push(newShade);
+        currentColor = shadesPresent;
+      }
     }
 
     return (        
@@ -24,7 +30,7 @@ class DetailView extends React.Component {
             position: relative;
             -webkit-box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
             box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
             background-color: 'white';
             height: 10vw;
@@ -34,11 +40,8 @@ class DetailView extends React.Component {
           }
           .selected-color-container {
             position: relative;
-            -webkit-box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
-            box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
-            border-radius: 8px;
-            overflow: hidden;
-            background-color: 'white';
+            border: 1px rgba(0,0,0,0.5) solid;
+            border-radius: 10px;
             height: 25vw;
             display: block;
             margin-left: auto;
@@ -56,15 +59,15 @@ class DetailView extends React.Component {
             text-align: left;
             padding: 10px 20px;
             background-color: #fff;
-            color: rgb(80,80,80);
+            color: #D8D8D8;
           }
-          .selected-color-container .color-label-selected {
+          .color-label-selected {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
             text-align: left;
-            padding: 10px 20px;
+            padding: 25px 20px;
             background-color: #fff;
             color: rgb(80,80,80);
           }
@@ -101,10 +104,10 @@ class DetailView extends React.Component {
 
         <div className="shades">
         {shadesPresent.map((d) => {
-          let styles = {
-            backgroundColor: d,
-          };
-          return (<div key={d} onClick={() => this.props.onClick(d)} className="color-container-shade" style={styles}>
+            let styles = {
+              backgroundColor: d,
+          }
+          return (<div key={d} className="color-container-shade" style={styles}>
             <div className="color-label-shade">{d}</div>
           </div>);
         })}
