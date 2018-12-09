@@ -96,7 +96,7 @@ class App extends Component {
                 onClick={(e) => this.colorDetailSelected(e)} />}
               {getCurrentColor() && <DetailView clear={this.clearColor} color={getCurrentColor()}/>}
               <Pagination 
-                pageCount={Math.ceil(colorCount / 12)}
+                pageCount={Math.floor(colorCount / 12)}
                 currentPage={this.state.page} 
                 paginate={this.paginate} />
             </div>

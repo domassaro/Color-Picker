@@ -15,7 +15,7 @@ const Pagination = ({pageCount, currentPage, paginate}) => {
                         font-style: italic;
                         line-height: 1.43;
                         font-size: 14px;
-                        color: #67a63a;
+                        color: #696969;
                         text-align: center;
                         margin: 40px 0;
                     }
@@ -50,12 +50,12 @@ const Pagination = ({pageCount, currentPage, paginate}) => {
                         cursor: pointer;
                     }
                     .middle-details, .first-page-number {
-                        color: #67a63a;
+                        color: #696969;
                         font-size: 14px;
                     }
                     .first-page-display,
                     .last-page-display {
-                        color: #67a63a;
+                        color: #696969;
                         font-size: 14px;
                         padding-left: 10px;
                         cursor: pointer;
