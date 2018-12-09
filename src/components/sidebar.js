@@ -22,14 +22,6 @@ class Sidebar extends React.Component {
             Gray: 'Gray'
         };
 
-        // let selectedColor = [];
-        // for (let i = 0; i < Colors.length; i++) {
-        //   if (Colors[i] !== undefined) {
-        //     selectedColor.push(chromaJs(colorOptions[i]).name());
-        //     console.log(selectedColor);
-        //   }
-        // }
-
         return (e) => {
             e.preventDefault();
             let selectedColor = [];
