@@ -5,6 +5,23 @@ import NavigationBar from "./components/navigationBar";
 import Sidebar from "./components/sidebar";
 import Pagination from "./components/pagination";
 import Colors from "./components/common/colors";
+import * as mobxReact from 'mobx-react';
+import * as mobx from 'mobx';
+
+
+const colorsStore = mobx.observable({
+    currentColorSelected : null,
+     currentPage : null
+});
+
+colorsStore.selectColor = function(color) {
+    colorsStore.currentColorSelected = color;
+};
+
+function getCurrentColor() {
+    return colorsStore.currentColorSelected;
+}
+
 
 class App extends Component {
   constructor(props) {
@@ -14,14 +31,11 @@ class App extends Component {
     this.state = {
       totalCount: this.props.totalCount,
       page: 1,
-      currentColor: null,
     };
   }
 
   colorDetailSelected = (colorSelected) => {
-    this.setState({
-      currentColor: colorSelected
-    });
+    colorsStore.selectColor(colorSelected);
     console.log("this is happening");
   }
 
@@ -32,9 +46,8 @@ class App extends Component {
     });
   }; 
   clearColor = () => {
-    this.setState({
-      currentColor: null,
-    });
+    colorsStore.selectColor(null);
+
   }; 
 
   render() {
@@ -77,11 +90,11 @@ class App extends Component {
               <Sidebar />
             </div>
             <div className="color-content">
-              {!this.state.currentColor && <ColorList  
+              {!getCurrentColor() && <ColorList  
                 colorsPresent={this.state.colorsPresent}
                 page={this.state.page}
                 onClick={(e) => this.colorDetailSelected(e)} />}
-              {this.state.currentColor && <DetailView clear={this.clearColor} color={this.state.currentColor}/>}
+              {getCurrentColor() && <DetailView clear={this.clearColor} color={getCurrentColor()}/>}
               <Pagination 
                 pageCount={Math.ceil(colorCount / 12)}
                 currentPage={this.state.page} 
@@ -92,5 +105,6 @@ class App extends Component {
     );
   }
 }
+var ObservableApp = mobxReact.observer(App);
 
-export default App;
+export default ObservableApp;

@@ -1,26 +1,13 @@
-class ColorsStore {
-	todos = [];
+import * as mobx from 'mobx';
 
-	get completedTodosCount() {
-    	return this.todos.filter(
-			todo => todo.completed === true
-		).length;
-    }
+export const colorsStore = mobx.observable({
+    currentColorSelected : null,
+     currentPage : null
+});
 
-	report() {
-		if (this.todos.length === 0)
-			return "<none>";
-		return `Next todo: "${this.todos[0].task}". ` +
-			`Progress: ${this.completedTodosCount}/${this.todos.length}`;
-	}
-
-    addTodo(task) {
-		this.todos.push({
-			task: task,
-			completed: false,
-            assignee: null
-		});
-	}
+colorsStore.selectColor = function(color) {
+    colorsStore.currentColorSelected = color;
+};
+export function getCurrentColor() {
+    return colorsStore.currentColorSelected;
 }
-
-const todoStore = new TodoStore();
