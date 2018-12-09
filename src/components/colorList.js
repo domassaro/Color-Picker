@@ -4,16 +4,24 @@ import chromaJs from "chroma-js";
 
 class ColorList extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      colorsPresent: [],
+      resultCount: 0
+    };
+  }
 
   render() {
     let colorsPresent = [];
-    for (let i = 0; i < Colors.length; i++) {
+    let colorName = [];
+    let colorStartIndex = this.props.page * 12;
+    for (let i = colorStartIndex; i < colorStartIndex + 12; i++) {
       if (Colors[i] !== undefined) {
-        colorsPresent.push(chromaJs(Colors[i]).hex());
+        colorName.push(chromaJs(Colors[i]).name());
+          colorsPresent.push(chromaJs(Colors[i]).hex());
       }
     }
-
-
 
 
     return (        
@@ -49,14 +57,14 @@ class ColorList extends React.Component {
             color: rgb(80,80,80);
           }
         `}</style>
-        {colorsPresent.map((d, i) => {
-            let styles = {
-              backgroundColor: d,
-            };
-          return (<div className="color-container" style={styles}>
-          <div className="color-label">{d}</div>
-        </div>);
-          })}
+        {colorsPresent.map((d) => {
+          let styles = {
+            backgroundColor: d,
+          };
+          return (<div onClick={() => this.props.onClick(d)} className="color-container" style={styles}>
+            <div className="color-label">{d}</div>
+          </div>);
+        })}
       </div>
     );
   }

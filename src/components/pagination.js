@@ -66,7 +66,7 @@ const Pagination = ({pageCount, currentPage, paginate}) => {
             
             `}</style>
                 {/* previous arrow */}
-                {currentPage != 1 && <div className="arrow-previous" 
+                {currentPage !== 1 && <div className="arrow-previous" 
                     onClick={() => paginate(parseInt(currentPage) - 1)}>
                     <img src={navLeft} alt="" width="10px" height="10px"/>
                 </div>}
@@ -74,14 +74,14 @@ const Pagination = ({pageCount, currentPage, paginate}) => {
                 {pageCount < 8 && Array(pageCount).fill(1).map((x,i) => 
                     <span className="first-page-display" 
                         key={i} 
-                        className={currentPage == i + 1 ? "paging-selected" : "paging"} 
+                        className={currentPage === i + 1 ? "paging-selected" : "paging"} 
                         onClick={() => paginate(i+1)}>
                         {i+1}
                     </span>)}
                 {/* if there are >= 8 pages and you're on one of the first 5 */}
                 {pageCount >= 8 && currentPage < 6 && <div> { Array(5).fill(1).map((x,i) => 
                     <span key={i} 
-                        className={currentPage == i + 1 ? "paging-selected" : "paging"} 
+                        className={currentPage === i + 1 ? "paging-selected" : "paging"} 
                         onClick={() => paginate(i+1)}>
                         {i+1}
                     </span>)}
@@ -97,7 +97,7 @@ const Pagination = ({pageCount, currentPage, paginate}) => {
                     <span className="middle-details"> ... </span> 
                     {Array(5).fill(1).map((x,i) => 
                         <span key={i} 
-                            className={currentPage == pageCount - 4 + i ? "paging-selected" : "paging"} 
+                            className={currentPage === pageCount - 4 + i ? "paging-selected" : "paging"} 
                             onClick={() => paginate(parseInt(pageCount) - 4 + i)}>
                                 {pageCount - 4 + i}
                         </span>)}
@@ -121,7 +121,7 @@ const Pagination = ({pageCount, currentPage, paginate}) => {
                     </span>
                 </div>}
                 {/* next arrow */}
-                {currentPage != pageCount && 
+                {currentPage !== pageCount && 
                     <div className="arrow-next" onClick={() => paginate(parseInt(currentPage) + 1)}>
                         <img src={navRight} alt="" width="10px" height="10px"/>
                     </div>}                              

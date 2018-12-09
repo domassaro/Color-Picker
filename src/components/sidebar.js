@@ -1,7 +1,59 @@
 import React from 'react';
+import chromaJs from "chroma-js";
+import Colors from "./common/colors";
 
 class Sidebar extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+        };
+    }
+
+    handleColorFilter(name) {
+        const colorOptions = { 
+            Red: 'Red',
+            Orange: 'Orange',
+            Yellow: 'Yellow', 
+            Green: 'Green',
+            Blue: 'Blue',
+            Purple: 'Purple', 
+            Brown: 'Brown', 
+            Gray: 'Gray'
+        };
+
+        // let selectedColor = [];
+        // for (let i = 0; i < Colors.length; i++) {
+        //   if (Colors[i] !== undefined) {
+        //     selectedColor.push(chromaJs(colorOptions[i]).name());
+        //     console.log(selectedColor);
+        //   }
+        // }
+
+        return (e) => {
+            e.preventDefault();
+            let selectedColor = [];
+            colorOptions.forEach((color) => {
+                if (Colors[name] !== undefined) {
+                    selectedColor.push(chromaJs(color));
+                    console.log(selectedColor);
+                    console.log("meep");
+                }
+            });
+        };
+    }
+
   render() {
+    const colorOptions = { 
+        Red: 'Red',
+        Orange: 'Orange',
+        Yellow: 'Yellow', 
+        Green: 'Green',
+        Blue: 'Blue',
+        Purple: 'Purple', 
+        Brown: 'Brown', 
+        Gray: 'Gray'
+    };
 
     return (        
       <div className="wrapper">
@@ -92,14 +144,13 @@ class Sidebar extends React.Component {
                 Random Color
             </button>
             <div>
-                <div className="color-options" onClick>Red</div>
-                <div className="color-options">Orange</div>
-                <div className="color-options">Yellow</div>
-                <div className="color-options">Green</div>
-                <div className="color-options">Blue</div>
-                <div className="color-options">Purple</div>
-                <div className="color-options">Brown</div>
-                <div className="color-options">Gray</div>
+                {Object.keys(colorOptions).map( (color, index) => (
+                    <div className="color-options"
+                        key={index}
+                        onClick={this.handleColorFilter(color)}>
+                        {color}
+                    </div>
+                ))}
             </div>
       </div>
     );

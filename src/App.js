@@ -1,26 +1,44 @@
 import React, { Component } from 'react';
 import ColorList from "./components/colorList";
+import DetailView from "./components/detailView";
 import NavigationBar from "./components/navigationBar";
 import Sidebar from "./components/sidebar";
 import Pagination from "./components/pagination";
+import Colors from "./components/common/colors";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
+    // This should be in a store
     this.state = {
+      totalCount: this.props.totalCount,
+      page: 1,
+      currentColor: null,
     };
   }
 
+  colorDetailSelected = (colorSelected) => {
+    this.setState({
+      currentColor: colorSelected
+    });
+    console.log("this is happening");
+  }
+
   paginate = pageNumber => {
-    this.state.loading = true;
-    this.state.page = pageNumber;
-    this.setState(this.state);
+    this.setState({
+      page: pageNumber,
+      loading: true
+    });
+  }; 
+  clearColor = () => {
+    this.setState({
+      currentColor: null,
+    });
   }; 
 
   render() {
-    let currentCount = 16;
-    let page = 1;
+    let colorCount = Colors.length;
     
     return (
         <div>
@@ -39,7 +57,7 @@ class App extends Component {
             .sidebar {
               width: auto;
               -webkit-box-flex: 0;
-              height:100vh;
+              height: 100vh;
             }
             .color-content {
               padding: 50px;
@@ -59,10 +77,14 @@ class App extends Component {
               <Sidebar />
             </div>
             <div className="color-content">
-              <ColorList />
+              {!this.state.currentColor && <ColorList  
+                colorsPresent={this.state.colorsPresent}
+                page={this.state.page}
+                onClick={(e) => this.colorDetailSelected(e)} />}
+              {this.state.currentColor && <DetailView clear={this.clearColor} color={this.state.currentColor}/>}
               <Pagination 
-                pageCount={Math.ceil(currentCount / 12)}
-                currentPage={page} 
+                pageCount={Math.ceil(colorCount / 12)}
+                currentPage={this.state.page} 
                 paginate={this.paginate} />
             </div>
           </div>
