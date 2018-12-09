@@ -12,16 +12,10 @@ class DetailView extends React.Component {
     let shadesPresent = [];
 
     for (let i = 0; i <= 4; i++) {
-      let brighten = chromaJs(currentColor).brighten(.3).hex();
-      shadesPresent.push(brighten);
+      let newColor = chromaJs(currentColor).brighten(.3).hex();
+      shadesPresent.push(newColor);
+      currentColor = newColor;
     }
-    
-    let brighten = chromaJs(currentColor).brighten(.3).hex();
-
-    let styleShades = {
-      backgroundColor: brighten
-    }
-
 
     return (        
       <div>
@@ -54,7 +48,6 @@ class DetailView extends React.Component {
           .container-pagination {
             display: none;
           }
-
           .color-container-shade .color-label-shade {
             position: absolute;
             bottom: 0;
@@ -65,7 +58,6 @@ class DetailView extends React.Component {
             background-color: #fff;
             color: rgb(80,80,80);
           }
-
           .selected-color-container .color-label-selected {
             position: absolute;
             bottom: 0;
@@ -91,7 +83,6 @@ class DetailView extends React.Component {
             margin-left: auto;
             margin-right: auto;
           }
-
           .clear-button:hover {
             background-color: #363C3C;
             color: rgb(220, 220, 220);
@@ -113,8 +104,8 @@ class DetailView extends React.Component {
           let styles = {
             backgroundColor: d,
           };
-          return (<div className="color-container-shade" style={styles}>
-            <div className="color-label-shade">{brighten}</div>
+          return (<div key={d} onClick={() => this.props.onClick(d)} className="color-container-shade" style={styles}>
+            <div className="color-label-shade">{d}</div>
           </div>);
         })}
         </div>
