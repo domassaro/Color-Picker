@@ -7,7 +7,7 @@ import Pagination from "./components/pagination";
 import Colors from "./components/common/colors";
 import * as mobxReact from 'mobx-react';
 import * as mobx from 'mobx';
-
+import chromaJs from "chroma-js";
 
 const colorsStore = mobx.observable({
     currentColorSelected : null,
@@ -34,9 +34,13 @@ class App extends Component {
     };
   }
 
+  handleRandomClick = () => {
+      let randomColor = chromaJs.random().name();
+      colorsStore.selectColor(randomColor);
+  }
+
   colorDetailSelected = (colorSelected) => {
     colorsStore.selectColor(colorSelected);
-    console.log("this is happening");
   }
 
   paginate = pageNumber => {
@@ -47,7 +51,6 @@ class App extends Component {
   }; 
   clearColor = () => {
     colorsStore.selectColor(null);
-
   }; 
 
   render() {
@@ -87,7 +90,8 @@ class App extends Component {
           <NavigationBar />
           <div className="container">
             <div className="sidebar">
-              <Sidebar />
+              <Sidebar 
+                handleRandomClick={(e) => this.handleRandomClick(e)} />
             </div>
             <div className="color-content">
               {!getCurrentColor() && <ColorList  

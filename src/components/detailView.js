@@ -113,7 +113,7 @@ class DetailView extends React.Component {
           let styles = {
             backgroundColor: d,
           };
-          return (<div onClick={() => this.props.onClick(d)} className="color-container-shade" style={styles}>
+          return (<div className="color-container-shade" style={styles}>
             <div className="color-label-shade">{brighten}</div>
           </div>);
         })}

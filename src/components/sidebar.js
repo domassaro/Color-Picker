@@ -1,37 +1,10 @@
 import React from 'react';
-import chromaJs from "chroma-js";
-import Colors from "./common/colors";
 
 class Sidebar extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-        };
-    }
-
-    handleColorFilter(name) {
-        const colorOptions = { 
-            Red: 'Red',
-            Orange: 'Orange',
-            Yellow: 'Yellow', 
-            Green: 'Green',
-            Blue: 'Blue',
-            Purple: 'Purple', 
-            Brown: 'Brown', 
-            Gray: 'Gray'
-        };
-
-        return (e) => {
-            e.preventDefault();
-            let selectedColor = [];
-            colorOptions.forEach((color) => {
-                if (Colors[name] !== undefined) {
-                    selectedColor.push(chromaJs(color));
-                    console.log(selectedColor);
-                    console.log("meep");
-                }
-            });
         };
     }
 
@@ -132,14 +105,13 @@ class Sidebar extends React.Component {
                 }
             }
         `}</style>
-            <button className="random-color-button" onClick={this.handleRandomClick}>
+            <button className="random-color-button" onClick={(e) => this.props.handleRandomClick(e)} >
                 Random Color
             </button>
             <div>
                 {Object.keys(colorOptions).map( (color, index) => (
                     <div className="color-options"
-                        key={index}
-                        onClick={this.handleColorFilter(color)}>
+                        key={index} >
                         {color}
                     </div>
                 ))}
