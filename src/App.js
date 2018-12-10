@@ -25,14 +25,6 @@ class App extends Component {
       this.colorStore.selectColor(randomColor);
   }
 
-  getColor = (color) => {
-    this.setState({
-      totalCount: this.colorStore.likeColors[color].length,
-      colorCount: this.colorStore.likeColors[color].length,
-      colorsPresent: this.colorStore.likeColors[color],
-    })
-  }
-
   colorDetailSelected = (colorSelected) => {
     this.colorStore.selectColor(colorSelected);
   }
@@ -46,6 +38,15 @@ class App extends Component {
   clearColor = () => {
     this.colorStore.selectColor(null);
   }; 
+
+  getColor = (color) => {
+    this.clearColor()
+    this.setState({
+      totalCount: this.colorStore.likeColors[color].length,
+      colorCount: this.colorStore.likeColors[color].length,
+      colorsPresent: this.colorStore.likeColors[color],
+    })
+  }
 
   allColors = () => {
     this.setState({
