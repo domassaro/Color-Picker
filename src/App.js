@@ -26,13 +26,10 @@ class App extends Component {
   }
 
   getColor = (color) => {
-    console.log(this.colorStore.likeColors[color].length);
-    console.log(this.state);    
     this.setState({
       totalCount: this.colorStore.likeColors[color].length,
       colorCount: this.colorStore.likeColors[color].length,
       colorsPresent: this.colorStore.likeColors[color],
-      page: 1
     })
   }
 
@@ -43,7 +40,6 @@ class App extends Component {
   paginate = pageNumber => {
     this.setState({
       page: pageNumber,
-      loading: true
     });
   };
 

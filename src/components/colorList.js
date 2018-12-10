@@ -66,7 +66,7 @@ const ColorList = inject("ColorStore")(
           let styles = {
             backgroundColor: d,
           };
-          return (<div onClick={() => this.props.onClick(d)} className="color-container" style={styles}>
+          return (<div onClick={() => this.props.onClick(d)} key={d} className="color-container" style={styles}>
             <div className="color-label">{d}</div>
           </div>);
         })}
