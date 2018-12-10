@@ -4,28 +4,15 @@ import DetailView from "./components/detailView";
 import NavigationBar from "./components/navigationBar";
 import Sidebar from "./components/sidebar";
 import Pagination from "./components/pagination";
-import Colors from "./components/common/colors";
+import ColorStore from "./components/common/colors";
 import * as mobxReact from 'mobx-react';
-import * as mobx from 'mobx';
 import chromaJs from "chroma-js";
-
-const colorsStore = mobx.observable({
-    currentColorSelected : null,
-     currentPage : null
-});
-
-colorsStore.selectColor = function(color) {
-    colorsStore.currentColorSelected = color;
-};
-
-function getCurrentColor() {
-    return colorsStore.currentColorSelected;
-}
-
+import { Provider } from 'mobx-react';
 
 class App extends Component {
   constructor(props) {
     super(props);
+    this.colorStore = new ColorStore();
 
     // This should be in a store
     this.state = {
@@ -36,11 +23,11 @@ class App extends Component {
 
   handleRandomClick = () => {
       let randomColor = chromaJs.random().name();
-      colorsStore.selectColor(randomColor);
+      this.colorStore.selectColor(randomColor);
   }
 
   colorDetailSelected = (colorSelected) => {
-    colorsStore.selectColor(colorSelected);
+    this.colorStore.selectColor(colorSelected);
   }
 
   paginate = pageNumber => {
@@ -48,15 +35,17 @@ class App extends Component {
       page: pageNumber,
       loading: true
     });
-  }; 
+  };
+
   clearColor = () => {
-    colorsStore.selectColor(null);
+    this.colorStore.selectColor(null);
   }; 
 
   render() {
-    let colorCount = Colors.length;
+    let colorCount = this.colorStore.colors.length;
     
     return (
+      <Provider ColorStore ={this.colorStore}>
         <div>
           <style jsx>{`
             .container {
@@ -81,21 +70,22 @@ class App extends Component {
           <div className="container">
             <Sidebar handleRandomClick={(e) => this.handleRandomClick(e)} />
             <div className="color-content">
-              {!getCurrentColor() && <ColorList  
+              {!this.colorStore.getCurrentColor() && <ColorList  
                 colorsPresent={this.state.colorsPresent}
                 page={this.state.page}
                 onClick={(e) => this.colorDetailSelected(e)} />}
-              {getCurrentColor() && <DetailView clear={this.clearColor} color={getCurrentColor()}/>}
+              {this.colorStore.getCurrentColor() && <DetailView clear={this.clearColor} color={this.colorStore.getCurrentColor()}/>}
               <Pagination 
-                pageCount={Math.floor(colorCount / 12)}
+                pageCount={Math.floor(colorCount / 12) - 1}
                 currentPage={this.state.page} 
                 paginate={this.paginate} />
             </div>
           </div>
         </div>
+      </Provider>
     );
   }
 }
-var ObservableApp = mobxReact.observer(App);
 
+var ObservableApp = mobxReact.observer(App);
 export default ObservableApp;

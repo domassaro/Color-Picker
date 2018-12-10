@@ -39,27 +39,30 @@ class DetailView extends React.Component {
             display: inline-block;
           }
           .selected-color-container {
-            position: relative;
-            border: 1px rgba(0,0,0,0.5) solid;
-            border-radius: 10px;
+            margin-right: auto;
+            margin-left: auto;
+            width: 60vw;
             height: 25vw;
             display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 60vw;
+            border-radius: 8px;	
+            overflow: hidden;	
+            background-color: 'white';
+            position: relative;
+            box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
+            border-radius: 8px;
           }
           .container-pagination {
             display: none;
           }
-          .color-container-shade .color-label-shade {
+          .color-label-shade {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
             text-align: left;
+            color: #505050;
             padding: 10px 20px;
-            background-color: #fff;
-            color: #D8D8D8;
+            background-color: white;
           }
           .color-label-selected {
             position: absolute;
@@ -69,12 +72,11 @@ class DetailView extends React.Component {
             text-align: left;
             padding: 25px 20px;
             background-color: #fff;
-            color: rgb(80,80,80);
+            color: #505050;
           }
           .clear-button {
             padding: 10px;
             border: 1px solid #363C3C;
-            outline: none;
             text-align: center;
             border-radius: 5px;
             background: white;
@@ -88,7 +90,7 @@ class DetailView extends React.Component {
           }
           .clear-button:hover {
             background-color: #363C3C;
-            color: rgb(220, 220, 220);
+            color: #DCDCDC;
             cursor: pointer;
           }
           .shades {

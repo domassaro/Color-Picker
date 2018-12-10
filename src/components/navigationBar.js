@@ -8,23 +8,19 @@ class NavigationBar extends React.Component {
         <style jsx>{`
             .nav-wrapper {
                 background-color: #363C3C;
-                display: -ms-flexbox;
                 display: flex;
-                -ms-flex-pack: justify;
-                    justify-content: space-between;
-                -ms-flex-align: center;
-                    align-items: center;
+                justify-content: space-between;
+                align-items: center;
                 padding: 10px 20px;
             }
 
             .search {
+                height: 34px;
+                border: none;
+                font-size: 14px;
                 border-radius: 6px;
                 width: 320px;
                 padding-left: 21px;
-                height: 34px;
-                border: none;
-                outline: none;
-                font-size: 14px;
                 margin: 0 0 0 20px;
             }
 

@@ -1,28 +1,29 @@
 import React from 'react';
-import Colors from "./common/colors";
 import chromaJs from "chroma-js";
+import { observer, inject } from 'mobx-react'
 
-class ColorList extends React.Component {
+const ColorList = inject("ColorStore")(
+  observer(
+  class ColorList extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
       colorsPresent: [],
-      resultCount: 0
     };
   }
 
   render() {
+    const colors = this.props.ColorStore.colors;
     let colorsPresent = [];
     let colorName = [];
     let colorStartIndex = this.props.page * 12;
     for (let i = colorStartIndex; i < colorStartIndex + 12; i++) {
-      if (Colors[i] !== undefined) {
-        colorName.push(chromaJs(Colors[i]).name());
-          colorsPresent.push(chromaJs(Colors[i]).hex());
+      if (i < colors.length) {
+        colorName.push(chromaJs(colors[i]).name());
+        colorsPresent.push(chromaJs(colors[i]).hex());
       }
     }
-
 
     return (        
       <div>
@@ -54,7 +55,7 @@ class ColorList extends React.Component {
             text-align: left;
             padding: 10px 20px;
             background-color: #fff;
-            color: rgb(80,80,80);
+            color: #505050;
           }
         `}</style>
         {colorsPresent.map((d) => {
@@ -68,6 +69,6 @@ class ColorList extends React.Component {
       </div>
     );
   }
-}
+}))
 
 export default ColorList;
