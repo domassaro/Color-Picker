@@ -18,10 +18,14 @@ const ColorList = inject("ColorStore")(
     let colorsPresent = [];
     let colorName = [];
     let colorStartIndex = this.props.page * 12;
-    for (let i = colorStartIndex; i < colorStartIndex + 12; i++) {
-      if (i < colors.length) {
-        colorName.push(chromaJs(colors[i]).name());
-        colorsPresent.push(chromaJs(colors[i]).hex());
+    if (!!this.props.colorsPresent) {
+      colorsPresent = this.props.colorsPresent;
+    } else {
+      for (let i = colorStartIndex; i < colorStartIndex + 12; i++) {
+        if (i < colors.length) {
+          colorName.push(chromaJs(colors[i]).name());
+          colorsPresent.push(chromaJs(colors[i]).hex());
+        }
       }
     }
     

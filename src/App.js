@@ -31,7 +31,8 @@ class App extends Component {
     this.setState({
       totalCount: this.colorStore.likeColors[color].length,
       colorCount: this.colorStore.likeColors[color].length,
-      colorsPresent: this.colorStore.likeColors[color]
+      colorsPresent: this.colorStore.likeColors[color],
+      page: 1
     })
   }
 
@@ -51,9 +52,7 @@ class App extends Component {
   }; 
 
   render() {
-    let colorCount = this.colorStore.colors.length;
-    console.log(this.state)
-     
+
     return (
       <Provider ColorStore ={this.colorStore}>
         <div>
@@ -89,7 +88,7 @@ class App extends Component {
               <DetailView clear={this.clearColor} 
                 color={this.colorStore.getCurrentColor()}/>}
               <Pagination 
-                pageCount={Math.floor(colorCount / 12) - 1}
+                pageCount={Math.floor(this.state.totalCount / 12) - 1}
                 currentPage={this.state.page} 
                 paginate={this.paginate} />
             </div>

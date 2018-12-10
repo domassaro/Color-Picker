@@ -108,7 +108,7 @@ const Sidebar = inject("ColorStore")(
                 <div className="color-options" onClick={(e) => this.props.getColor('blue')}>Blue</div>
                 <div className="color-options" onClick={(e) => this.props.getColor('purple')}>Purple</div>
                 <div className="color-options" onClick={(e) => this.props.getColor('brown')}>Brown</div>
-                <div className="color-options" onClick={(e) => this.props.getColor('grey')}>Gray</div>
+                <div className="color-options" onClick={(e) => this.props.getColor('gray')}>Gray</div>
             </div>
       </div>
     );

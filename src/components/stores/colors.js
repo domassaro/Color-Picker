@@ -10,7 +10,8 @@ export default class ColorStore {
       green: [],
       blue: [],
       purple: [],
-      brown: []
+      brown: [],
+      gray: []
   };
   let basicColors = Object.keys(this.likeColors);
 
