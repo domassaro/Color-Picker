@@ -4,7 +4,7 @@ import DetailView from "./components/detailView";
 import NavigationBar from "./components/navigationBar";
 import Sidebar from "./components/sidebar";
 import Pagination from "./components/pagination";
-import ColorStore from "./components/common/colors";
+import ColorStore from "./components/stores/colors";
 import * as mobxReact from 'mobx-react';
 import chromaJs from "chroma-js";
 import { Provider } from 'mobx-react';
@@ -14,9 +14,8 @@ class App extends Component {
     super(props);
     this.colorStore = new ColorStore();
 
-    // This should be in a store
     this.state = {
-      totalCount: this.props.totalCount,
+      totalCount: this.colorStore.colors.length,
       page: 1,
     };
   }
@@ -24,6 +23,16 @@ class App extends Component {
   handleRandomClick = () => {
       let randomColor = chromaJs.random().name();
       this.colorStore.selectColor(randomColor);
+  }
+
+  getColor = (color) => {
+    console.log(this.colorStore.likeColors[color].length);
+    console.log(this.state);    
+    this.setState({
+      totalCount: this.colorStore.likeColors[color].length,
+      colorCount: this.colorStore.likeColors[color].length,
+      colorsPresent: this.colorStore.likeColors[color]
+    })
   }
 
   colorDetailSelected = (colorSelected) => {
@@ -43,7 +52,8 @@ class App extends Component {
 
   render() {
     let colorCount = this.colorStore.colors.length;
-    
+    console.log(this.state)
+     
     return (
       <Provider ColorStore ={this.colorStore}>
         <div>
@@ -51,7 +61,6 @@ class App extends Component {
             .container {
               height: 100%;
               display: -webkit-box;
-              -webkit-box-orient: horizontal;
             }
             .navigation-bar {
               text-align: center;
@@ -68,13 +77,17 @@ class App extends Component {
 
           <NavigationBar />
           <div className="container">
-            <Sidebar handleRandomClick={(e) => this.handleRandomClick(e)} />
+            <Sidebar handleRandomClick={(e) => this.handleRandomClick(e)}
+              getColor={(color) => this.getColor(color)}
+             />
             <div className="color-content">
-              {!this.colorStore.getCurrentColor() && <ColorList  
-                colorsPresent={this.state.colorsPresent}
+              {!this.colorStore.getCurrentColor() && 
+              <ColorList colorsPresent={this.state.colorsPresent}
                 page={this.state.page}
                 onClick={(e) => this.colorDetailSelected(e)} />}
-              {this.colorStore.getCurrentColor() && <DetailView clear={this.clearColor} color={this.colorStore.getCurrentColor()}/>}
+              {this.colorStore.getCurrentColor() && 
+              <DetailView clear={this.clearColor} 
+                color={this.colorStore.getCurrentColor()}/>}
               <Pagination 
                 pageCount={Math.floor(colorCount / 12) - 1}
                 currentPage={this.state.page} 

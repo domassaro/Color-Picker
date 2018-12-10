@@ -1,19 +1,22 @@
 import React from 'react';
+import { observer, inject } from 'mobx-react'
 import chromaJs from "chroma-js";
 
-class Sidebar extends React.Component {
+const Sidebar = inject("ColorStore")(
+    observer(
+    class Sidebar extends React.Component {
+
     constructor(props) {
         super(props);
-
         this.state = {
+            colorsPresent: [],
         };
     }
-
-    getRedColor = () => {
-        chromaJs.scale(['red']).colors(12);
-    }
+    
 
   render() {
+    let randomColor = chromaJs.random().name();
+
     return (        
       <div className="wrapper">
         <style jsx>{`
@@ -34,12 +37,19 @@ class Sidebar extends React.Component {
                 width: 100%;
                 height: 50px;
                 border-radius: 8px;
+                -webkit-transition:0.3s all ease;
+                transition:0.3s ease all;
             }
 
             .random-color-button:hover {
-                background-color: #363C3C;
-                color: rgb(220, 220, 220);
+                background-color: ${randomColor};
                 cursor: pointer;
+                border: 1px solid transparent;
+            }
+            .random-color-button:active, a:focus {
+                outline: 0;
+                border: none;
+                -moz-outline-style: none;
             }
 
             .wrapper > a {
@@ -81,18 +91,9 @@ class Sidebar extends React.Component {
             }
 
             @media screen and (max-width: 800px) {
-                .wrapper {
-                    padding: 20px;
-                }
-
                 .random-color-button {
                     margin: 0 auto 10px;
                     display: block;
-                }
-
-                .wrapper > a {
-                    display: inline-block;
-                    margin: 0 10px;
                 }
             }
         `}</style>
@@ -100,18 +101,18 @@ class Sidebar extends React.Component {
                 Random Color
             </button>
             <div>
-                <div className="color-options" onClick={(e) => this.getRedColor()}>Red</div>
-                <div className="color-options">Orange</div>
-                <div className="color-options">Yellow</div>
-                <div className="color-options">Green</div>
-                <div className="color-options">Blue</div>
-                <div className="color-options">Purple</div>
-                <div className="color-options">Brown</div>
-                <div className="color-options">Gray</div>
+                <div className="color-options" onClick={(e) => this.props.getColor('red')}>Red</div>
+                <div className="color-options" onClick={(e) => this.props.getColor('orange')}>Orange</div>
+                <div className="color-options" onClick={(e) => this.props.getColor('yellow')}>Yellow</div>
+                <div className="color-options" onClick={(e) => this.props.getColor('green')}>Green</div>
+                <div className="color-options" onClick={(e) => this.props.getColor('blue')}>Blue</div>
+                <div className="color-options" onClick={(e) => this.props.getColor('purple')}>Purple</div>
+                <div className="color-options" onClick={(e) => this.props.getColor('brown')}>Brown</div>
+                <div className="color-options" onClick={(e) => this.props.getColor('grey')}>Gray</div>
             </div>
       </div>
     );
   }
-}
+}))
 
 export default Sidebar;

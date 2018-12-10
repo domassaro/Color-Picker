@@ -24,7 +24,7 @@ const ColorList = inject("ColorStore")(
         colorsPresent.push(chromaJs(colors[i]).hex());
       }
     }
-
+    
     return (        
       <div>
         <style jsx>{`

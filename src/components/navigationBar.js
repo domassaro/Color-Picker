@@ -29,11 +29,10 @@ class NavigationBar extends React.Component {
                 margin-right: 10px;
             }
         `}</style>
-            <img src={logo} className="icon" onClick={this.handleListView} alt="" />
+            <img src={logo} className="icon" alt="" />
                 <input
                 className="search"
-                placeholder="Search"
-                onChange={this.handleChange} />
+                placeholder="Search" />
         </div>
         );
     }
