@@ -27,7 +27,8 @@
 
 ## Bonus Stretch Goals
 - Design
-  - Include interaction design
+
+  ✔️ Include interaction design
   
   ✔️ Add tints/shades in detail view
 

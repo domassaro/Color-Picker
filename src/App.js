@@ -49,6 +49,7 @@ class App extends Component {
   }
 
   allColors = () => {
+    this.clearColor()
     this.setState({
       totalCount: this.colorStore.colors.length,
       colorCount: null,
