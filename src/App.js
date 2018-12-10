@@ -47,6 +47,15 @@ class App extends Component {
     this.colorStore.selectColor(null);
   }; 
 
+  allColors = () => {
+    this.setState({
+      totalCount: this.colorStore.colors.length,
+      colorCount: null,
+      colorsPresent: null,
+      page: 1
+   });
+  }
+
   render() {
 
     return (
@@ -74,6 +83,7 @@ class App extends Component {
           <div className="container">
             <Sidebar handleRandomClick={(e) => this.handleRandomClick(e)}
               getColor={(color) => this.getColor(color)}
+              getAll={this.allColors}
              />
             <div className="color-content">
               {!this.colorStore.getCurrentColor() && 
