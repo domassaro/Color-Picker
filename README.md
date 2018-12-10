@@ -1,7 +1,8 @@
 ## Core Goals
 - Replicate design
-|✔️ - [Font](./FONT.md)
-|✔️ - Styles
+
+    ✔️ - [Font](./FONT.md)
+    ✔️ - Styles
 |✔️ - Iconography
 - Replicate functionality
 |✔️ - Create a database of colors (minimum 100)
