@@ -1,44 +1,35 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Core Goals
+- Replicate design
+  - [Font](./FONT.md)
+  - Styles
+  - Iconography
+- Replicate functionality
+  - Create a database of colors (minimum 100)
+  - Paginate your data to show a certain number of swatches at a time
+  - Display both the color swatch and the label of the color
+  - Ability to select random color and modify view accordingly
+  - Clicking swatch changes to color detail view
 
-## Available Scripts
+## Stretch Goals
+- Design
+  - Make it responsive
+- Functionality
+  - Generate color list from a script
 
-In the project directory, you can run:
+## Bonus Stretch Goals
+- Design
+  - Include interaction design
+  - Add tints/shades in detail view
 
-### `npm start`
+- Functionality
+  - Add search functionality
+  - Color generation script guarantees same colors and order
+  - Group by color (Make sidebar menu functional)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Data
+  - Fetch data with GraphQL
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Deliverables
+Thank you for this challenge, I loved working on it!
+╰( ⁰ ਊ ⁰ )━☆ﾟ.*･｡ﾟ
